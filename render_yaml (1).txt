@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: telegram-bot-ai
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BOT_TOKEN
+        sync: false
+      - key: WEBHOOK_URL
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+    disk:
+      name: data-storage
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
